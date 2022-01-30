@@ -22,7 +22,7 @@ client.once('ready', () => {
 		const daiString = daiBalance.toFixed(2)
 		const mimString = mimBalance.toFixed(2)
 		const totalBalance = totalBalanceResponse.data.usd_value.toFixed(2)
-		console.log(`Balance: |${totalBalance}| USDC: |${usdcString}| DAI: |${daiString}| MIM: |${mimString}|`)
+		console.log(`[${Date().toLocaleString()}] Balance: |${totalBalance}| USDC: |${usdcString}| DAI: |${daiString}| MIM: |${mimString}|`)
 		client.user.setActivity(`Balance: $${totalBalance} USDC: ${usdcString} DAI: ${daiString} MIM: ${mimString}`)
 		// await client.user.setUsername(`$${totalBalance}`)
 	}, 15000)
