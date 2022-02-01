@@ -15,7 +15,8 @@ const provider = setupProvider(process.env.HTTP_PROVIDER)
 function adjustBalance(totalBalance, ftmPrice) {
 	const ftmToDeduct = 320
 	const usdRemoved = 0
-	return totalBalance - (ftmToDeduct * ftmPrice) + usdRemoved
+	const currentBalance = totalBalance - (ftmToDeduct * ftmPrice) + usdRemoved
+	return currentBalance.toFixed(2)
 }
 
 function getData() {
