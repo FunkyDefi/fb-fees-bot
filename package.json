@@ -6,7 +6,7 @@
   "scripts": {
     "test": "test",
     "start": "pm2 start ./index.js",
-    "start:dev": "pm2 start --watch ./index.js"
+    "start:dev": "NODE_ENV=development node ./index.js"
   },
   "author": "",
   "license": "ISC",
