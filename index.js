@@ -13,10 +13,10 @@ const client = new Client({ intents: [Intents.FLAGS.DIRECT_MESSAGES, Intents.FLA
 const provider = setupProvider(process.env.HTTP_PROVIDER)
 
 function adjustBalance(totalBalance, ftmPrice) {
-	const ftmToDeduct = 320
+	const ftmToDeduct = 320 + 10
 	const usdRemoved = 0
 	const currentBalance = totalBalance - (ftmToDeduct * ftmPrice) + usdRemoved
-	return currentBalance.toFixed(2)
+	return (currentBalance / 1000).toFixed(1)
 }
 
 function getData() {
@@ -43,7 +43,7 @@ client.once('ready', () => {
 		const ftmPriceUsd = ftmPrice.data.price
 		let balance = adjustBalance(totalBalance, ftmPriceUsd)
 		console.log(`[${Date().toLocaleString()}] Balance: |${totalBalance}| FTM: |${ftmString}| USDC: |${usdcString}| DAI: |${daiString}| MIM: |${mimString}|`)
-		client.user.setActivity(`$${balance}  FTM: ${ftmString}, USDC: ${usdcString} DAI: ${daiString} MIM: ${mimString}`)
+		client.user.setActivity(`$${balance}k  FTM: ${ftmString}, USDC: ${usdcString} DAI: ${daiString} MIM: ${mimString}`)
 		// await client.user.setUsername(`$${totalBalance}`)
 	}, 15000)
 });
