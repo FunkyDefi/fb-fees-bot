@@ -30,15 +30,19 @@ function getData() {
 		return Promise.all([totalPromise, ftmPricePromise, ftmPromise, usdcPromise, daiPromise, mimPromise])
 }
 
+function formatCurrencyString(value) {
+	return parseFloat(value.toFixed(0)).toLocaleString('en')
+}
+
 // When the client is ready, run this code (only once)
 client.once('ready', () => {
 	console.log('Ready!');
 	setInterval(async () => {
 		const [totalBalanceResponse, ftmPrice, ftmBalance, usdcBalance, daiBalance, mimBalance] = await getData()
-		const usdcString = usdcBalance.toFixed(2)
-		const daiString = daiBalance.toFixed(2)
-		const mimString = mimBalance.toFixed(2)
-		const ftmString = ftmBalance.toFixed(2)
+		const usdcString = formatCurrencyString(usdcBalance)
+		const daiString = formatCurrencyString(daiBalance)
+		const mimString = formatCurrencyString(mimBalance)
+		const ftmString = formatCurrencyString(ftmBalance)
 		const totalBalance = totalBalanceResponse.data.usd_value.toFixed(2)
 		const ftmPriceUsd = ftmPrice.data.price
 		let balance = adjustBalance(totalBalance, ftmPriceUsd)
